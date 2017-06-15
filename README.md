@@ -33,3 +33,4 @@ This is a very basic setup, and would need further developing to be useful.  Som
 * Allow for different document types other than TXT.   XML could be added (DOCX, ODT, etc) if we had schemas to get at the text elements and only index those.
 * Better styling
 * I would add in possibly things like backbone.js to more tightly integrate the views into an MVC
+* Better separate the different words that were found, possibly presenting in a selectable list that would update the datatables to only list occurances of that specific word
