@@ -1,12 +1,16 @@
 <html>
 	<head>
 		<title>Word Search</title>
+		<script>
+			function updateTable() {
+				var num = parseInt(document.getElementById("wordnum").value);
+				document.getElementById("wordtable").src = "/getwordlist/"+num;
+			}
+		</script>
 	</head>
 	<body>
-		Generate table with the <input type='number' value=20> most frequent words.
-		<button onClick="loadTable()">Load Table</button>
-		<script>
-			<iframe src='' id="wordtable" width="100%" height="80%" frameBorder="0"/>
-		</script>
+		Generate table with the <input id="wordnum" type='number' value=20> most frequent words.
+		<button onClick="updateTable()">Load Table</button>
+		<iframe src="/getwordlist/20" id="wordtable" width="100%" height="80%" frameBorder="0"/>
 	</body>
 </html>
