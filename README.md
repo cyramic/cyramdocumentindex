@@ -29,3 +29,7 @@ This is a very basic setup, and would need further developing to be useful.  Som
 * NLTK could do more and start to determining things like parts of speech.  This could better refine results and how they're displayed and could even autosummarise to an extent what is being said about a given search term.
 * Data such as how often words appear is being calculated, but isn't being displayed.  This could be added.
 * Drop-down menus could be added to the datatables to allow for narrowing down which documents to look for.  A more complex solution would be to better structure the index so that different documents could be targeted by the search instead of an all-or-nothing search like is currently being done
+* Once stopwords are used, they should be removed from memory as they'll no longer be needed
+* Allow for different document types other than TXT.   XML could be added (DOCX, ODT, etc) if we had schemas to get at the text elements and only index those.
+* Better styling
+* I would add in possibly things like backbone.js to more tightly integrate the views into an MVC
