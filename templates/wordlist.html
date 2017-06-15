@@ -1,0 +1,29 @@
+<html>
+	<head>
+		<title>Word List</title>
+		<link rel='stylesheet' href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css"/>
+	</head>
+	<body>
+		<table id="wordstable">
+			
+		</table>
+		
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+		<script>
+			var dataSet = {{words|tojson}}
+			
+			$(document).ready(function() {
+				$('#wordstable').DataTable( {
+					data: dataSet,
+					columns: [
+						{ title: "Word" },
+						{ title: "Documents" },
+						{ title: "Sentences containing the word" }
+					]
+				} );
+			});
+		</script>
+		
+	</body>
+</html>
