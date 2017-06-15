@@ -35,7 +35,7 @@ class Words:
 		for w in thesewords:
 			searchresults = self.search(w[1])
 			for finding in searchresults:
-				formatted = [w[1], finding["_source"]["filename"], finding["_source"]["text"]]
+				formatted = [w[1], finding["_source"]["filename"], self.highlightWord(finding["_source"]["text"], w[1])]
 				searchlist.append(formatted)
 		return searchlist
 		
@@ -47,7 +47,17 @@ class Words:
 			hits = {}
 		
 		return hits
-
+		
+	def highlightWord(self, sentence, word):
+		sentence = sentence.replace(word, "<b class='highlight'>"+word+"</b>")
+		try:
+			word = word.title()
+			sentence = sentence.replace(word, "<b class='highlight'>"+word+"</b>")
+		except:
+			pass
+		
+		return sentence
+		
 def esDeleteIndex(indx):
 	try:
 		es.indices.delete(index=indx)
