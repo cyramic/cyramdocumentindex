@@ -34,3 +34,4 @@ This is a very basic setup, and would need further developing to be useful.  Som
 * Better styling
 * I would add in possibly things like backbone.js to more tightly integrate the views into an MVC
 * Better separate the different words that were found, possibly presenting in a selectable list that would update the datatables to only list occurances of that specific word
+* Test with different languages (e.g. Japanese, Spanish) to see if any code would need to be changed to be able to handle them.
