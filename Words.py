@@ -74,7 +74,6 @@ class Words:
 		for widx in results:
 			sentence = sentence[:widx] + "<b class='highlight'>" + sentence[widx:widx+len(word)] + "</b>" + sentence[widx+len(word):]
 		
-		print(sentence)
 		return sentence
 		
 def indexDocs(stopwords):
