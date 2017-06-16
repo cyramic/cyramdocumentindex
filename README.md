@@ -22,6 +22,9 @@ The front-end uses basic jQuery, and datatables.js with almost no styling.
 You should see this:
 <img src='screenshot.png'>
 
+## Unit tests
+* Unit testing is in the *tests.py* file
+
 ## Where to go from here
 This is a very basic setup, and would need further developing to be useful.  Some areas to consider:
 * Elasticsearch should be able to do its own word frequency counting using its analysis engine, but I couldn't get this to work, so I defaulted to other word-counting means.  This would need to be fixed.
