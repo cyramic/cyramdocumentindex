@@ -1,5 +1,5 @@
 '''This handles all of the searching and the tracking of word data'''
-
+import re
 import os, sys
 import json
 import nltk
@@ -57,45 +57,26 @@ class Words:
 		
 	def highlightWord(self, sentence, word):
 		'''Simple function to highlight a given word and return the result with HTML formatting applied'''
-		sentence = sentence.replace(word, "<b class='highlight'>"+word+"</b>")
-		try:
-			word = word.title()
-			sentence = sentence.replace(word, "<b class='highlight'>"+word+"</b>")
-		except:
-			pass
 		
+		# We want to replace the word no matter the capitalisation...
+		try:
+			results = [m.start() for m in re.finditer(word.lower(), sentence.lower())]
+		except:
+			return sentence
+			
+		if results is None or len(results) == 0:
+			return sentence
+			
+		#results = sorted(results, key=int, reverse=True)
+		results.sort(reverse=True)
+		
+		# Find the search term (case insensitive) and replace it with formatting
+		for widx in results:
+			sentence = sentence[:widx] + "<b class='highlight'>" + sentence[widx:widx+len(word)] + "</b>" + sentence[widx+len(word):]
+		
+		print(sentence)
 		return sentence
 		
-def esDeleteIndex(indx):
-	''' Deletes a given index from Elasticsearch '''
-	try:
-		es.indices.delete(index=indx)
-	except:
-		return False
-	return True
-
-def esIndexDocs():
-	'''Indexes documents into the Elasticsearch engine'''
-	text_docs = []
-	wordfreq = []
-	overallwords = []
-	for f in os.listdir("docs"):
-		#Cycle through the docs
-		if f.endswith('.txt'):
-			# Only index text files.
-			fp = open(os.path.join(docdir, f), encoding='utf8')
-			data = fp.read()
-			
-			# Use NLTK to break into sentences
-			tokendata = tokenizer.tokenize(data)
-			for item in tokendata:
-				# Add to the Elasticsearch index
-				es.index(index=INDEX, doc_type=TYPE, body={
-					'filename': os.path.join(docdir, f),
-					'text': item
-				})
-	return True
-
 def indexDocs(stopwords):
 	'''Originally it was planned that Elasticsearch do this, but I couldn't get the analatics to work right, so 
 	I calculated word frequencies this way.'''
